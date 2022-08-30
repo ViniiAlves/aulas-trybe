@@ -6,10 +6,14 @@ const getPokemonById = async (id) => {
 }
 
 async function main(){
+  const promises = [];
   for (let i = 1; i <= 50; i++) {
-    const pokemon = await getPokemonById(i);
-    console.log(pokemon.name);
+    let pokemonPromises = await getPokemonById(i);
+    promises.push(pokemonPromises);
   }
+
+  const pokemons = await Promise.all(promises);
+  pokemons.forEach( pokemon => console.log(pokemon.name));
 }
 
 main();
