@@ -5,13 +5,13 @@ const getPokemonById = async (id) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     return response.data;
   } catch (e) {
-    return {};
+    return e;
   }
 }
 
 async function main(){
   const promises = [];
-  for (let i = 1; i <= 50; i++) {
+  for (let i = 0; i <= 50; i++) {
     let pokemonPromises = await getPokemonById(i);
     promises.push(pokemonPromises);
   }
